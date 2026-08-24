@@ -1,437 +1,857 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف الإنجاز الإلكتروني</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#174c38">
 
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+<title>ملف الإنجاز الإلكتروني</title>
 
-    body{
-      font-family:Tahoma, Arial, sans-serif;
-      background:#f7f3e8;
-      color:#173b2b;
-    }
+<style>
+:root{
+  --green:#174c38;
+  --green2:#245f49;
+  --gold:#c7a755;
+  --cream:#f8f4e8;
+  --cream2:#efe9d8;
+  --white:#fffdf8;
+  --text:#173b2b;
+  --shadow:0 12px 30px rgba(31,58,45,.12);
+}
 
-    /* الغلاف */
-    #cover{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:25px;
-      background:
-        radial-gradient(circle at top right,#e6d6a9 0,transparent 30%),
-        radial-gradient(circle at bottom left,#d9e4d4 0,transparent 35%),
-        #f8f4e9;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .cover-card{
-      width:100%;
-      max-width:750px;
-      background:rgba(255,255,255,.88);
-      border:2px solid #c7a85a;
-      border-radius:30px;
-      padding:45px 25px;
-      box-shadow:0 15px 45px rgba(0,0,0,.10);
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .cover-card h1{
-      color:#174d38;
-      font-size:34px;
-      margin-bottom:15px;
-    }
+body{
+  margin:0;
+  font-family:"Tahoma","Arial",sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
 
-    .cover-card h2{
-      color:#9b7a2f;
-      font-size:24px;
-      margin-bottom:25px;
-    }
+/* الغلاف */
 
-    .cover-card p{
-      line-height:2;
-      font-size:18px;
-    }
+#cover{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  background:
+  radial-gradient(circle at 85% 10%,rgba(199,167,85,.22),transparent 30%),
+  radial-gradient(circle at 10% 90%,rgba(23,76,56,.12),transparent 34%),
+  linear-gradient(145deg,#fbf8ef,#f3eedf);
+}
 
-    .enter-btn{
-      margin-top:30px;
-      border:none;
-      background:#174d38;
-      color:white;
-      padding:15px 35px;
-      border-radius:30px;
-      font-size:18px;
-      cursor:pointer;
-      box-shadow:0 7px 18px rgba(23,77,56,.25);
-    }
+.cover-wrap{
+  width:min(920px,100%);
+  min-height:82vh;
+  border:2px solid var(--gold);
+  border-radius:36px;
+  background:rgba(255,253,248,.94);
+  box-shadow:var(--shadow);
+  padding:35px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
 
-    .enter-btn:hover{
-      background:#0f3b2a;
-    }
+.cover-wrap:before,
+.cover-wrap:after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  border:2px solid rgba(199,167,85,.22);
+  border-radius:50%;
+}
 
-    /* المحتوى */
-    #portfolio{
-      display:none;
-      min-height:100vh;
-    }
+.cover-wrap:before{
+  top:-80px;
+  right:-60px;
+}
 
-    header{
-      background:#174d38;
-      color:white;
-      padding:22px 15px;
-      text-align:center;
-      border-bottom:5px solid #c7a85a;
-    }
+.cover-wrap:after{
+  bottom:-90px;
+  left:-60px;
+}
 
-    header h1{
-      font-size:27px;
-      margin-bottom:8px;
-    }
+.cover-mini{
+  color:var(--gold);
+  font-weight:bold;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
 
-    header p{
-      color:#f3e4b7;
-    }
+.cover-title{
+  font-size:clamp(34px,6vw,58px);
+  margin:8px 0;
+  color:var(--green);
+  line-height:1.4;
+}
 
-    .hero{
-      max-width:1100px;
-      margin:25px auto;
-      padding:25px;
-      text-align:center;
-    }
+.cover-subtitle{
+  font-size:clamp(21px,4vw,34px);
+  color:#9b7a29;
+  margin:6px 0 24px;
+}
 
-    .hero-card{
-      background:#fffdf8;
-      border:1px solid #ded1aa;
-      border-radius:25px;
-      padding:28px 20px;
-      box-shadow:0 7px 25px rgba(0,0,0,.07);
-    }
+.cover-line{
+  width:110px;
+  height:3px;
+  border-radius:20px;
+  background:var(--gold);
+  margin:8px auto 22px;
+}
 
-    .hero-card h2{
-      color:#174d38;
-      margin-bottom:12px;
-    }
+.cover-text{
+  font-size:clamp(16px,3vw,21px);
+  line-height:2;
+  max-width:650px;
+}
 
-    .hero-card p{
-      line-height:2;
-    }
+.enter-btn{
+  margin-top:28px;
+  border:0;
+  background:var(--green);
+  color:#fff;
+  font-size:19px;
+  font-weight:bold;
+  padding:16px 38px;
+  border-radius:40px;
+  cursor:pointer;
+  box-shadow:0 10px 22px rgba(23,76,56,.24);
+}
 
-    .sections{
-      max-width:1100px;
-      margin:auto;
-      padding:10px 18px 50px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-    }
+/* الملف */
 
-    .section-card{
-      background:#fffdf8;
-      border:1px solid #dfd3b2;
-      border-radius:20px;
-      padding:22px 15px;
-      min-height:125px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      box-shadow:0 5px 16px rgba(0,0,0,.06);
-      cursor:pointer;
-      transition:.2s;
-    }
+#portfolio{
+  display:none;
+  min-height:100vh;
+  background:
+  radial-gradient(circle at top left,rgba(199,167,85,.12),transparent 26%),
+  var(--cream);
+}
 
-    .section-card:hover{
-      transform:translateY(-3px);
-      border-color:#c7a85a;
-    }
+.topbar{
+  background:linear-gradient(135deg,var(--green),#0f3c2c);
+  color:#fff;
+  border-bottom:5px solid var(--gold);
+  padding:24px 16px 30px;
+  text-align:center;
+}
 
-    .section-card .icon{
-      font-size:32px;
-      margin-bottom:10px;
-    }
+.logos{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
 
-    .section-card h3{
-      color:#174d38;
-      font-size:17px;
-    }
+.logo-box{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.25);
+  padding:8px 14px;
+  border-radius:14px;
+  font-size:13px;
+}
 
-    footer{
-      background:#174d38;
-      color:white;
-      text-align:center;
-      padding:20px;
-      border-top:4px solid #c7a85a;
-    }
+.topbar h1{
+  margin:8px 0;
+  font-size:clamp(28px,5vw,44px);
+}
 
-    /* الصفحات الداخلية */
-    .page{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:10;
-      background:#f7f3e8;
-      overflow:auto;
-      padding-bottom:40px;
-    }
+.topbar p{
+  margin:0;
+  color:#f7e7b7;
+  font-size:16px;
+}
 
-    .page-header{
-      background:#174d38;
-      color:white;
-      padding:20px;
-      text-align:center;
-      border-bottom:4px solid #c7a85a;
-    }
+.profile{
+  max-width:1120px;
+  margin:-18px auto 24px;
+  padding:0 16px;
+}
 
-    .back-btn{
-      margin-top:12px;
-      padding:10px 22px;
-      border:none;
-      border-radius:22px;
-      background:#c7a85a;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
-    }
+.profile-card{
+  background:var(--white);
+  border:1px solid #ded1aa;
+  border-radius:28px;
+  padding:25px;
+  box-shadow:var(--shadow);
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:20px;
+  align-items:center;
+}
 
-    .page-content{
-      max-width:900px;
-      margin:25px auto;
-      padding:20px;
-      background:white;
-      border-radius:22px;
-      border:1px solid #ded1aa;
-      min-height:300px;
-    }
+.profile-photo{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:4px solid #e4d39f;
+  background:linear-gradient(145deg,#e8dfca,#fff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+}
 
-    @media(max-width:600px){
-      .cover-card h1{
-        font-size:27px;
-      }
+.profile-info h2{
+  margin:0 0 9px;
+  color:var(--green);
+}
 
-      .cover-card h2{
-        font-size:20px;
-      }
+.profile-info p{
+  margin:5px 0;
+  line-height:1.8;
+}
 
-      .sections{
-        grid-template-columns:repeat(2,1fr);
-        gap:11px;
-      }
+.section-heading{
+  max-width:1120px;
+  margin:25px auto 10px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-      .section-card{
-        padding:15px 8px;
-        min-height:115px;
-      }
+.section-heading h2{
+  margin:0;
+  color:var(--green);
+}
 
-      .section-card h3{
-        font-size:14px;
-      }
-    }
-  </style>
+.section-heading span{
+  color:#94762c;
+  font-size:14px;
+}
+
+.cards{
+  max-width:1120px;
+  margin:auto;
+  padding:10px 16px 45px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.card{
+  border:1px solid #ded1aa;
+  background:var(--white);
+  border-radius:22px;
+  padding:22px 12px;
+  min-height:145px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(50,65,54,.07);
+  transition:.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+}
+
+.card-icon{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f1ebd9;
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  margin:0;
+  color:var(--green);
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* الصفحة الداخلية */
+
+.inner{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:var(--cream);
+  overflow-y:auto;
+}
+
+.inner-header{
+  background:var(--green);
+  color:#fff;
+  border-bottom:4px solid var(--gold);
+  padding:22px 16px;
+  position:sticky;
+  top:0;
+  z-index:3;
+}
+
+.inner-head{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+}
+
+.inner-header h2{
+  margin:0;
+  font-size:23px;
+}
+
+.back-btn{
+  border:0;
+  background:var(--gold);
+  color:#fff;
+  padding:10px 19px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.inner-body{
+  max-width:1000px;
+  margin:25px auto;
+  padding:0 16px 50px;
+}
+
+.content-card{
+  border:1px solid #ded1aa;
+  background:#fff;
+  border-radius:25px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  min-height:400px;
+}
+
+.content-card h3{
+  color:var(--green);
+  margin-top:0;
+}
+
+.edit-area{
+  width:100%;
+  min-height:170px;
+  resize:vertical;
+  border:1px solid #d8cda9;
+  border-radius:16px;
+  padding:14px;
+  font-family:inherit;
+  font-size:16px;
+  line-height:1.8;
+  outline:none;
+  background:#fffdf8;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
+
+.action-btn{
+  border:0;
+  border-radius:22px;
+  padding:11px 18px;
+  cursor:pointer;
+  font-family:inherit;
+  font-weight:bold;
+}
+
+.save-btn{
+  background:var(--green);
+  color:white;
+}
+
+.photo-btn{
+  background:var(--gold);
+  color:#fff;
+}
+
+.clear-btn{
+  background:#eee7d6;
+  color:var(--green);
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.gallery img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:16px;
+  border:1px solid #ddd3b5;
+}
+
+.note{
+  margin-top:16px;
+  font-size:13px;
+  color:#776c54;
+  line-height:1.8;
+}
+
+footer{
+  background:#103b2c;
+  border-top:4px solid var(--gold);
+  color:#fff;
+  text-align:center;
+  padding:22px;
+  font-size:14px;
+}
+
+@media(max-width:850px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:620px){
+  .cover-wrap{
+    min-height:78vh;
+    padding:30px 18px;
+    border-radius:28px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+    gap:11px;
+  }
+
+  .card{
+    min-height:125px;
+    padding:15px 8px;
+  }
+
+  .card-icon{
+    width:50px;
+    height:50px;
+    font-size:25px;
+  }
+
+  .card h3{
+    font-size:14px;
+  }
+
+  .profile-card{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .profile-photo{
+    margin:auto;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .inner-head{
+    align-items:flex-start;
+  }
+
+  .inner-header h2{
+    font-size:18px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <section id="cover">
-  <div class="cover-card">
-    <h1>ملف الإنجاز الإلكتروني</h1>
-    <h2>رياض الأطفال والتوجيه الصحي</h2>
+  <div class="cover-wrap">
+    <div class="cover-mini">1448 هـ</div>
 
-    <p>
-      ملف إلكتروني لتوثيق الأعمال والإنجازات<br>
+    <h1 class="cover-title">ملف الإنجاز الإلكتروني</h1>
+
+    <div class="cover-line"></div>
+
+    <h2 class="cover-subtitle">
+      رياض الأطفال والتوجيه الصحي
+    </h2>
+
+    <p class="cover-text">
+      مساحة إلكترونية متكاملة لتوثيق الإنجازات والأعمال
       والشواهد والبرامج والأنشطة التعليمية والصحية
     </p>
 
-    <button class="enter-btn" onclick="openPortfolio()">
+    <button class="enter-btn" onclick="enterPortfolio()">
       الدخول إلى ملف الإنجاز
     </button>
   </div>
 </section>
 
-<section id="portfolio">
 
-  <header>
-    <h1>ملف الإنجاز الإلكتروني</h1>
-    <p>رياض الأطفال • التوجيه الصحي • عام 1448هـ</p>
-  </header>
+<main id="portfolio">
 
-  <div class="hero">
-    <div class="hero-card">
-      <h2>مرحباً بكم في ملف الإنجاز</h2>
+<header class="topbar">
+  <div class="logos">
+    <div class="logo-box">وزارة التعليم</div>
+    <div class="logo-box">رؤية السعودية 2030</div>
+  </div>
+
+  <h1>ملف الإنجاز الإلكتروني</h1>
+  <p>رياض الأطفال • التوجيه الصحي • 1448هـ</p>
+</header>
+
+
+<section class="profile">
+  <div class="profile-card">
+
+    <div class="profile-photo">🌿</div>
+
+    <div class="profile-info">
+      <h2>الملف المهني الإلكتروني</h2>
+
       <p>
-        مساحة إلكترونية منظمة لتوثيق الإنجازات والشواهد
-        والبرامج والأنشطة والتقارير والمشاركات.
+        يوثق الأعمال المهنية والبرامج التعليمية
+        والإنجازات والشواهد والتوجيه الصحي.
+      </p>
+
+      <p>
+        جميع الأقسام منظمة بشكل مستقل لسهولة
+        الإضافة والتحديث والمتابعة.
       </p>
     </div>
+
   </div>
+</section>
 
-  <div class="sections">
 
-    <div class="section-card" onclick="openPage('البيانات الشخصية')">
-      <div class="icon">👩🏻‍🏫</div>
-      <h3>البيانات الشخصية</h3>
+<div class="section-heading">
+  <h2>أقسام ملف الإنجاز</h2>
+  <span>24 قسمًا</span>
+</div>
+
+
+<section class="cards" id="cards"></section>
+
+
+<footer>
+  ملف الإنجاز الإلكتروني • 1448هـ
+</footer>
+
+</main>
+
+
+<section class="inner" id="inner">
+
+  <header class="inner-header">
+    <div class="inner-head">
+
+      <h2 id="innerTitle"></h2>
+
+      <button class="back-btn" onclick="closeSection()">
+        ← العودة
+      </button>
+
     </div>
+  </header>
 
-    <div class="section-card" onclick="openPage('السيرة الذاتية')">
-      <div class="icon">📄</div>
-      <h3>السيرة الذاتية</h3>
-    </div>
+  <div class="inner-body">
 
-    <div class="section-card" onclick="openPage('الرؤية والرسالة')">
-      <div class="icon">🎯</div>
-      <h3>الرؤية والرسالة</h3>
-    </div>
+    <div class="content-card">
 
-    <div class="section-card" onclick="openPage('الأهداف')">
-      <div class="icon">⭐</div>
-      <h3>الأهداف</h3>
-    </div>
+      <h3 id="contentTitle"></h3>
 
-    <div class="section-card" onclick="openPage('الخطة السنوية')">
-      <div class="icon">🗓️</div>
-      <h3>الخطة السنوية</h3>
-    </div>
+      <p>
+        يمكنك كتابة المحتوى الخاص بهذا القسم وإضافة
+        الصور والشواهد.
+      </p>
 
-    <div class="section-card" onclick="openPage('الوحدات التعليمية')">
-      <div class="icon">📚</div>
-      <h3>الوحدات التعليمية</h3>
-    </div>
+      <textarea
+      id="editor"
+      class="edit-area"
+      placeholder="اكتبي المحتوى هنا..."></textarea>
 
-    <div class="section-card" onclick="openPage('التحضير')">
-      <div class="icon">✏️</div>
-      <h3>التحضير</h3>
-    </div>
+      <div class="actions">
 
-    <div class="section-card" onclick="openPage('الاستراتيجيات')">
-      <div class="icon">🧩</div>
-      <h3>الاستراتيجيات</h3>
-    </div>
+        <button
+        class="action-btn save-btn"
+        onclick="saveContent()">
+        حفظ النص
+        </button>
 
-    <div class="section-card" onclick="openPage('الوسائل التعليمية')">
-      <div class="icon">🎨</div>
-      <h3>الوسائل التعليمية</h3>
-    </div>
+        <label class="action-btn photo-btn">
+          إضافة صور
+          <input
+          id="imageInput"
+          type="file"
+          accept="image/*"
+          multiple
+          hidden
+          onchange="addImages(event)">
+        </label>
 
-    <div class="section-card" onclick="openPage('إنجازات الأطفال')">
-      <div class="icon">🏆</div>
-      <h3>إنجازات الأطفال</h3>
-    </div>
+        <button
+        class="action-btn clear-btn"
+        onclick="clearSection()">
+        حذف محتوى القسم
+        </button>
 
-    <div class="section-card" onclick="openPage('ملاحظات الأطفال')">
-      <div class="icon">📝</div>
-      <h3>ملاحظات الأطفال</h3>
-    </div>
+      </div>
 
-    <div class="section-card" onclick="openPage('الأنشطة')">
-      <div class="icon">🎈</div>
-      <h3>الأنشطة</h3>
-    </div>
+      <div class="gallery" id="gallery"></div>
 
-    <div class="section-card" onclick="openPage('المناسبات')">
-      <div class="icon">🎉</div>
-      <h3>المناسبات</h3>
-    </div>
+      <p class="note">
+        ملاحظة: الحفظ في هذه النسخة يتم على نفس الجهاز
+        والمتصفح. الربط الدائم بقاعدة البيانات يمكن إضافته
+        لاحقًا دون تغيير تصميم الملف.
+      </p>
 
-    <div class="section-card" onclick="openPage('المبادرات')">
-      <div class="icon">💡</div>
-      <h3>المبادرات</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('الشراكة المجتمعية')">
-      <div class="icon">🤝</div>
-      <h3>الشراكة المجتمعية</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('التوجيه الصحي')">
-      <div class="icon">🩺</div>
-      <h3>التوجيه الصحي</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('تقارير التوجيه الصحي')">
-      <div class="icon">📋</div>
-      <h3>تقارير التوجيه الصحي</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('المسابقات الصحية')">
-      <div class="icon">🥇</div>
-      <h3>المسابقات الصحية</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('الدورات التدريبية')">
-      <div class="icon">🎓</div>
-      <h3>الدورات التدريبية</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('الشهادات')">
-      <div class="icon">📜</div>
-      <h3>الشهادات</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('الشواهد والصور')">
-      <div class="icon">🖼️</div>
-      <h3>الشواهد والصور</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('ملاحظات الإدارة')">
-      <div class="icon">💬</div>
-      <h3>ملاحظات الإدارة والمشرفات</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('مشاركة الأسرة')">
-      <div class="icon">👨‍👩‍👧</div>
-      <h3>مشاركة الأسرة</h3>
-    </div>
-
-    <div class="section-card" onclick="openPage('التقارير الختامية')">
-      <div class="icon">📊</div>
-      <h3>التقارير الختامية</h3>
     </div>
 
   </div>
-
-  <footer>
-    ملف الإنجاز الإلكتروني © 1448هـ
-  </footer>
 
 </section>
 
-<div class="page" id="innerPage">
-  <div class="page-header">
-    <h2 id="pageTitle"></h2>
-    <button class="back-btn" onclick="closePage()">العودة للرئيسية</button>
-  </div>
-
-  <div class="page-content">
-    <h3 id="insideTitle"></h3>
-    <br>
-    <p>سيتم إضافة المحتوى والصور والشواهد الخاصة بهذا القسم هنا.</p>
-  </div>
-</div>
 
 <script>
-  function openPortfolio(){
-    document.getElementById("cover").style.display="none";
-    document.getElementById("portfolio").style.display="block";
-    window.scrollTo(0,0);
+
+const sections = [
+
+["👩🏻‍🏫","البيانات الشخصية"],
+["📄","السيرة الذاتية"],
+["🎯","الرؤية والرسالة"],
+["⭐","الأهداف"],
+
+["🗓️","الخطة السنوية"],
+["📚","الوحدات التعليمية"],
+["✏️","التحضير"],
+["🧩","الاستراتيجيات"],
+
+["🎨","الوسائل التعليمية"],
+["🏆","إنجازات الأطفال"],
+["📝","ملاحظات الأطفال"],
+["🎈","الأنشطة"],
+
+["🎉","المناسبات"],
+["💡","المبادرات"],
+["🤝","الشراكة المجتمعية"],
+["🩺","التوجيه الصحي"],
+
+["📋","تقارير التوجيه الصحي"],
+["🥇","المسابقات الصحية"],
+["🎓","الدورات التدريبية"],
+["📜","الشهادات"],
+
+["🖼️","الشواهد والصور"],
+["💬","ملاحظات الإدارة والمشرفات"],
+["👨‍👩‍👧","مشاركة الأسرة"],
+["📊","التقارير الختامية"]
+
+];
+
+let currentSection="";
+
+
+function renderCards(){
+
+  const box=document.getElementById("cards");
+
+  box.innerHTML="";
+
+  sections.forEach(section=>{
+
+    const card=document.createElement("div");
+
+    card.className="card";
+
+    card.innerHTML=`
+      <div class="card-icon">${section[0]}</div>
+      <h3>${section[1]}</h3>
+    `;
+
+    card.onclick=()=>openSection(section[1]);
+
+    box.appendChild(card);
+
+  });
+
+}
+
+
+function enterPortfolio(){
+
+  document.getElementById("cover").style.display="none";
+
+  document.getElementById("portfolio").style.display="block";
+
+  window.scrollTo(0,0);
+
+}
+
+
+function openSection(title){
+
+  currentSection=title;
+
+  document.getElementById("innerTitle").textContent=title;
+
+  document.getElementById("contentTitle").textContent=title;
+
+  document.getElementById("editor").value=
+  localStorage.getItem("text_"+title) || "";
+
+  loadImages();
+
+  document.getElementById("inner").style.display="block";
+
+  document.body.style.overflow="hidden";
+
+}
+
+
+function closeSection(){
+
+  document.getElementById("inner").style.display="none";
+
+  document.body.style.overflow="auto";
+
+}
+
+
+function saveContent(){
+
+  const text=document.getElementById("editor").value;
+
+  localStorage.setItem("text_"+currentSection,text);
+
+  alert("تم حفظ المحتوى بنجاح");
+
+}
+
+
+function addImages(event){
+
+  const files=[...event.target.files];
+
+  let saved=
+  JSON.parse(localStorage.getItem("images_"+currentSection) || "[]");
+
+  files.forEach(file=>{
+
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+
+      saved.push(e.target.result);
+
+      try{
+
+        localStorage.setItem(
+          "images_"+currentSection,
+          JSON.stringify(saved)
+        );
+
+        loadImages();
+
+      }catch(err){
+
+        alert("مساحة الصور على الجهاز ممتلئة. احذفي بعض الصور ثم حاولي مرة أخرى.");
+
+      }
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+function loadImages(){
+
+  const gallery=document.getElementById("gallery");
+
+  gallery.innerHTML="";
+
+  const images=
+  JSON.parse(localStorage.getItem("images_"+currentSection) || "[]");
+
+  images.forEach((src,index)=>{
+
+    const wrapper=document.createElement("div");
+
+    const img=document.createElement("img");
+
+    img.src=src;
+
+    img.onclick=function(){
+
+      if(confirm("هل تريدين حذف هذه الصورة؟")){
+
+        images.splice(index,1);
+
+        localStorage.setItem(
+          "images_"+currentSection,
+          JSON.stringify(images)
+        );
+
+        loadImages();
+
+      }
+
+    };
+
+    wrapper.appendChild(img);
+
+    gallery.appendChild(wrapper);
+
+  });
+
+}
+
+
+function clearSection(){
+
+  if(confirm("هل تريدين حذف محتوى هذا القسم؟")){
+
+    localStorage.removeItem("text_"+currentSection);
+
+    localStorage.removeItem("images_"+currentSection);
+
+    document.getElementById("editor").value="";
+
+    loadImages();
+
   }
 
-  function openPage(title){
-    document.getElementById("pageTitle").textContent=title;
-    document.getElementById("insideTitle").textContent=title;
-    document.getElementById("innerPage").style.display="block";
-    document.body.style.overflow="hidden";
-  }
+}
 
-  function closePage(){
-    document.getElementById("innerPage").style.display="none";
-    document.body.style.overflow="auto";
-  }
+
+renderCards();
+
 </script>
+
 </body>
 </html>
