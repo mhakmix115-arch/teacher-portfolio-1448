@@ -485,35 +485,60 @@ footer{
 </head>
 
 <body>
-<section id="cover" style="width:100%;margin:0;padding:0;background:#f8f4e8;">
-  <div style="position:relative;width:100%;margin:0;padding:0;">
+<section id="cover"
+style="
+display:block !important;
+width:100% !important;
+height:auto !important;
+min-height:0 !important;
+margin:0 !important;
+padding:0 !important;
+background:#f8f4e8 !important;
+">
+
+  <div style="
+  position:relative !important;
+  width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  ">
 
     <img
       src="9AE0D5B6-3BFE-423F-A0D7-1A89225BDF13.png"
       alt="غلاف ملف الإنجاز"
-      style="width:100%;height:auto;display:block;margin:0;padding:0;"
+      style="
+      width:100% !important;
+      height:auto !important;
+      max-width:none !important;
+      object-fit:unset !important;
+      display:block !important;
+      margin:0 !important;
+      padding:0 !important;
+      "
     >
 
     <button
-      onclick="enterPortfolio()"
+      onclick="document.getElementById('cover').style.display='none';document.getElementById('portfolio').style.display='block';window.scrollTo(0,0);"
       aria-label="الدخول إلى ملف الإنجاز"
       style="
-        position:absolute;
-        left:27%;
-        bottom:2%;
-        width:46%;
-        height:5%;
-        border:0;
-        padding:0;
-        background:transparent;
-        cursor:pointer;
-        z-index:50;
+      position:absolute;
+      left:27%;
+      bottom:1.5%;
+      width:46%;
+      height:6%;
+      border:0;
+      padding:0;
+      margin:0;
+      background:transparent;
+      cursor:pointer;
+      z-index:999;
       ">
     </button>
 
   </div>
 </section>
-<main id="portfolio">
+<main id="portfolio" style="display:none;">
 
 <img src="A433943F-7537-44C8-8F31-BE5F9EC2CF9E.png"
      alt="الواجهة الداخلية لملف الإنجاز"
