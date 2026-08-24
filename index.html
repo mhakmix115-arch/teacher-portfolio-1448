@@ -485,16 +485,32 @@ footer{
 </head>
 
 <body>
-<section id="cover" style="min-height:100vh;background:#f8f4e8;display:flex;align-items:center;justify-content:center;padding:18px;">
-  <div style="position:relative;width:min(920px,100%);">
-    
+<section id="cover" style="width:100%;margin:0;padding:0;min-height:0;display:block;background:#f8f4e8;">
+  <div style="position:relative;width:100%;margin:0;padding:0;">
+
     <img
-     src="9AE0D5B6-3BFE-423F-A0D7-1A89225BDF13.png"
+      src="9AE0D5B6-3BFE-423F-A0D7-1A89225BDF13.png"
       alt="غلاف ملف الإنجاز"
-      style="width:100%;display:block;border-radius:22px;"
+      style="width:100%;height:auto;display:block;margin:0;padding:0;border-radius:0;"
     >
 
-    
+    <button
+      onclick="enterPortfolio()"
+      aria-label="الدخول إلى ملف الإنجاز"
+      style="
+        position:absolute;
+        left:35%;
+        bottom:1.5%;
+        width:30%;
+        height:5%;
+        border:0;
+        padding:0;
+        background:transparent;
+        cursor:pointer;
+        z-index:20;
+      ">
+    </button>
+
   </div>
 </section>
 <main id="portfolio">
